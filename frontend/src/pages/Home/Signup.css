@@ -1,0 +1,39 @@
+.body{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+}
+
+@property --angle{
+    syntax:"<angle>";
+    initial-value:0deg;
+    inherits:false;
+}
+
+.signupbox::after,.signupbox::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:400px;
+    background-image:conic-gradient(from var(--angle),transparent,aqua);
+    height:520px;
+    translate:-50% -50%;
+    border-radius: 32px;
+    z-index:-1;
+    animation:3s spin linear infinite;
+}
+.signupbox::before{
+    filter:blur(20px);
+    
+}
+
+@keyframes spin{
+    from{
+        --angle:0deg;
+    }
+    to{
+       --angle:360deg;
+    }
+}

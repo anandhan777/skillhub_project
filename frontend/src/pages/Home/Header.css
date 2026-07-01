@@ -1,0 +1,37 @@
+h1{
+    font-family: 'Inter', sans-serif;
+}
+.overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 50%;       /* cover half the width */
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(14, 33, 54, 0.9),   /* solid at left */
+    rgba(14, 33, 54, 0)      /* fade to transparent */
+  );
+}
+.btn2{
+    background-color:transparent;
+    border: 2px solid aqua;
+    font-weight:400;
+    box-shadow: 0 0 10px 0 rgba(8, 253, 245, 0.5);
+    color:white;
+}
+.btn2:hover{
+    background-color:white;
+    color:darkblue;
+  
+}
+.btn1{
+    font-weight:600;
+
+}
+.btn1:hover{
+    background-color:transparent;
+    color:white;
+    duration:300;
+    
+}

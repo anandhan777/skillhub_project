@@ -1,0 +1,13 @@
+.container{
+    animation: loop 8s linear infinite ;
+    gap:300px;
+}
+@keyframes loop {
+    0%{
+        transform:translateX(0%);
+    }
+    100%{
+        transform:translate(-70%);
+    }
+    
+}

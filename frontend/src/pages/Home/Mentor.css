@@ -1,0 +1,32 @@
+.container1{
+    animation:moveleft 20s linear infinite;
+    gap:363px;
+
+}
+.container1:hover{
+    animation-play-state: paused;
+}
+@keyframes moveleft{
+    0%{
+        transform:translateX(-70%);
+    }
+   110% {
+        transform:translateX(0%);
+    }
+}
+.container2{
+    animation:moveright 20s linear infinite;
+    gap:363px;
+}
+.container2:hover{
+    animation-play-state: paused;
+}
+
+@keyframes moveright{
+    0%{
+        transform:translateX(0%);
+    }
+    100%{
+        transform:translateX(-70%);
+    }
+}

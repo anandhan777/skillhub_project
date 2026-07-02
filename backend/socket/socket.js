@@ -10,7 +10,7 @@ const initSocket=(server)=>{
     "http://localhost:5173",                
     "https://skillhub-project-bay.vercel.app"    
   ],
-            methods:["GET","POST"],
+     methods:["GET","POST"],
             credentials:true,
         }
     });

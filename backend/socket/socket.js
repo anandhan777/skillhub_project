@@ -8,7 +8,7 @@ const initSocket=(server)=>{
         cors:{
             origin: [
     "http://localhost:5173",                
-    "https://your-vercel-app.vercel.app"    
+    "https://skillhub-project-bay.vercel.app/"    
   ],
             methods:["GET","POST"],
             credentials:true,

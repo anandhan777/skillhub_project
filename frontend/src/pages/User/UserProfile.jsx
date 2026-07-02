@@ -34,7 +34,7 @@ const user=JSON.parse(localStorage.getItem("user"));
   useEffect(()=>{
         const fetchroadmap=async()=>{
             try{
-            const res=await axios.get("http://localhost:5000/api/admin/getroadmaps",{
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getroadmaps`,{
                 headers:{Authorization: `Bearer ${token}`}
             });
            ;
@@ -49,7 +49,8 @@ const user=JSON.parse(localStorage.getItem("user"));
          const fetchConnections = async () => {
       const user=JSON.parse(localStorage.getItem("user"));
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/connectedpeople/${user.id}`);
+        const res = await axios.get(`
+${import.meta.env.VITE_API_URL}/api/users/connectedpeople/${user.id}`);
         setConnections(res.data);
         console.log(res.data);
       } catch (err) {
@@ -64,7 +65,8 @@ const user=JSON.parse(localStorage.getItem("user"));
             if (!roadmap?._id) return; 
             console.log(roadmap._id);
             try{
-                const res=await axios.get(`http://localhost:5000/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
+                const res=await axios.get(`
+${import.meta.env.VITE_API_URL}/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
                 setProgress(res.data.percentage);
                 console.log(res.data.percentage)
                 setCompletedSteps(res.data.completedSteps);
@@ -84,7 +86,7 @@ const user=JSON.parse(localStorage.getItem("user"));
     const fetchProfile=async()=>{
       try{
       const token=localStorage.getItem("token");
-      const res=await axios.get("http://localhost:5000/api/users/profileview",{
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profileview`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);
@@ -115,11 +117,11 @@ const user=JSON.parse(localStorage.getItem("user"));
         <div className='w-full h-54 mt-10 '>
           
 
-            <img src={`http://localhost:5000${profile.profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
         </div>
         <div className="flex">
         <div className=' ml-41 w-60 h-60 relative rounded-full -mt-25 ml-4 border-4 border-white '>
-            <img src={`http://localhost:5000${profile.profile.profilePicture}`} alt="profile" className='  w-full h-full object-cover rounded-full shadow-md'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profile.profilePicture}`} alt="profile" className='  w-full h-full object-cover rounded-full shadow-md'/>
         </div>
         <div className='flex'>
         <div className="pl-12" >
@@ -172,7 +174,8 @@ const user=JSON.parse(localStorage.getItem("user"));
       <div className="flex items-center space-x-4">
         {/* Avatar */}
         <img
-          src={`http://localhost:5000${conn.profilePicture}`}
+          src={`
+${import.meta.env.VITE_API_URL}${conn.profilePicture}`}
           alt={conn.fullName}
           className="w-22 h-22 rounded-full "
         />

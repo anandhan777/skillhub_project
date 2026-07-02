@@ -10,7 +10,7 @@ export default function UserProfileForm({ title,formData,handleChange,handleSubm
   useEffect(()=>{
     const fetchCategory=async()=>{
       try{
-      const res=await axios.get("http://localhost:5000/api/admin/getcategory");
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategory`);
       setCategory(res.data);
       }catch(error){
         console.log(error);

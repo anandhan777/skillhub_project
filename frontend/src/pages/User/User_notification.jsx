@@ -22,10 +22,10 @@ const UNotificationPage = () => {
     const token=localStorage.getItem("token");
     const user=JSON.parse(localStorage.getItem("user"));
     try{
-      const [res,con,glo,sec]=await Promise.all([axios.get("http://localhost:5000/api/users/getallnotification",{headers:{Authorization:`Bearer ${token}`}}),
-        axios.get(`http://localhost:5000/api/users/connectionrequest/${user.id}`),
-      axios.get("http://localhost:5000/api/admin/globalnotification"),
-    axios.get(`http://localhost:5000/api/users/bookingconfirm/${user.id}`)]);
+      const [res,con,glo,sec]=await Promise.all([axios.get(`${import.meta.env.VITE_API_URL}/api/users/getallnotification`,{headers:{Authorization:`Bearer ${token}`}}),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/users/connectionrequest/${user.id}`),
+      axios.get(`${import.meta.env.VITE_API_URL}/api/admin/globalnotification`),
+    axios.get(`${import.meta.env.VITE_API_URL}/api/users/bookingconfirm/${user.id}`)]);
       console.log(res.data);
       console.log(con.data);
       setAllmessage(res.data);
@@ -44,8 +44,8 @@ const UNotificationPage = () => {
 
   const deleteMsg=async(id)=>{
     try{
-      const data=await axios.delete(`http://localhost:5000/api/users/deletemsg/${id}`);
-      const data1=await axios.delete(`http://localhost:5000/api/users/deletebooking/${id}`);
+      const data=await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/deletemsg/${id}`);
+      const data1=await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/deletebooking/${id}`);
       setAllmessage(pre=>pre.filter(i=>i._id!==id));
       setGlob(pre=>pre.filter(i=>i._id!==id));
       setSession(pre=>pre.filter(i=>i._id!==id));
@@ -56,21 +56,7 @@ const UNotificationPage = () => {
   
 
   const notifications = {
-   
-
-    // session: [
-    //   {
-    //     title: "New Video Available",
-    //     message: "Advanced React Hooks tutorial added.",
-    //     time: "1 hour ago",
-    //   },
-    //   {
-    //     title: "Checklist Updated",
-    //     message: "Node.js roadmap checklist has been updated.",
-    //     time: "3 hours ago",
-    //   },
-    // ],
-
+ 
     connection: [
       {
         title: "Account Security",
@@ -86,12 +72,12 @@ const UNotificationPage = () => {
   };
  const user=JSON.parse(localStorage.getItem("user"));
   const handleAccept=async(id)=>{
-    await axios.put(`http://localhost:5000/api/users/connectionaccept/${user.id}/${id}`,{status:"accept"});
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/users/connectionaccept/${user.id}/${id}`,{status:"accept"});
     alert('request accepted successfully');
   }
 
   const handleReject=async(id)=>{
-     await axios.put(`http://localhost:5000/api/users/connectionreject/${user.id}/${id}`,{status:"reject"});
+     await axios.put(`${import.meta.env.VITE_API_URL}/api/users/connectionreject/${user.id}/${id}`,{status:"reject"});
     alert('request rejected');
   }
 

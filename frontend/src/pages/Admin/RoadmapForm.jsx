@@ -49,7 +49,7 @@ const RoadmapForm = () => {
             }))
         }
 
-        const res = await axios.post("http://localhost:5000/api/admin/createroadmap",payload);
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/createroadmap`,payload);
         console.log(res.data);
     }catch(err){
         console.log(err.message);    

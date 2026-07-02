@@ -41,7 +41,7 @@ const ResourceForm = ({ uploadedBy }) => {
         
     }
     try {
-      const res = await axios.post("http://localhost:5000/api/admin/addresources",formdata, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/addresources`,formdata, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       alert("Resource submitted successfully!");

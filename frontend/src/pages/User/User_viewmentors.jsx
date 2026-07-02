@@ -17,7 +17,7 @@ const MentorList = () => {
    useEffect(()=>{
     const fetchmentors=async()=>{
       try{
-      const res=await axios.get(`http://localhost:5000/api/mentor/getmentors/${user.id}`);
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/getmentors/${user.id}`);
       console.log(res);
       setMentors(res.data);
       }catch(error){
@@ -57,7 +57,7 @@ const MentorList = () => {
             <div className="flex justify-center ">
                 
               <img
-                src={`http://localhost:5000${mentor.profilePicture}`}
+                src={`${import.meta.env.VITE_API_URL}${mentor.profilePicture}`}
                 alt={mentor.mentor.name}
                 className="w-24 h-24 rounded-full border-3 object-cover border-white p-[2px] "
               />

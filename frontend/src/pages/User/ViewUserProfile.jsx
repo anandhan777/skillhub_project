@@ -34,7 +34,7 @@ function ViewUserProfile() {
     const fetchProfile=async()=>{
       try{
       const token=localStorage.getItem("token");
-      const res=await axios.get(`http://localhost:5000/api/users/profileview/${id}`,{headers:{Authorization:`Bearer ${token}`}});
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profileview/${id}`,{headers:{Authorization:`Bearer ${token}`}});
         
       setProfile(res.data);
       console.log(res.data);
@@ -63,11 +63,11 @@ function ViewUserProfile() {
         <div className='w-full h-54 mt-10 '>
           
 
-            <img src={`http://localhost:5000${profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
         </div>
         <div className="flex">
         <div className=' ml-41 w-60 h-60  rounded-full -mt-25 border-4 border-white '>
-            <img src={`http://localhost:5000${profile.profilePicture}`} alt="profile" className='  w-full h-full object-cover rounded-full shadow-md'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profilePicture}`} alt="profile" className='  w-full h-full object-cover rounded-full shadow-md'/>
         </div>
         <div className='flex'>
         <div className="pl-12" >
@@ -92,13 +92,7 @@ function ViewUserProfile() {
         </div>
         
         <div className="bg-gray-100 w-full  mt-5 pt-5">
-            {/* <div className=" ml-34  w-[300px] h-[230px] bg-white rounded-lg ">
-                <h2 className="text-green-900  font-light text-3xl pl-19 py-6 ">contact Me</h2>
-                <h2 className="text-1xl flex items-center pl-10"><SiGmail/> krishnan@gmail.com</h2>
-                <h2 className="text-1xl flex items-center pl-10"><FaPhone/> 123-456-7890</h2>
-                <h2 className="text-1xl flex items-center pl-10"><MdLocationOn/> kerala</h2>
-                <button className="bg-blue-400 text-white px-4 py-2 rounded-full ml-25 my-5">chat me</button>
-            </div> */}
+          
             <div className="w-full grid grid-cols-3 gap-10 px-20 pb-5 ">
     <div className="bg-white shadow rounded-lg p-4 transform-transform duration-300 hover:scale-108">
       <h3 className="text-lg font-bold mb-2">Contact Me</h3>
@@ -128,8 +122,6 @@ function ViewUserProfile() {
         />
         </div>
 
-        {/* Info */}
-       
         <div>
           <h2 className="text-lg font-bold">{mentor.name}</h2>
           <p className="text-blue-600 font-semibold">{mentor.expertise}</p>

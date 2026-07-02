@@ -21,7 +21,7 @@ const MNotificationPage = () => {
     const fetchNotification=async()=>{
       const user=JSON.parse(localStorage.getItem("user"));
       try{
-        const res=await axios.get(`http://localhost:5000/api/users/connectionrequest/${user.id}`)
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/connectionrequest/${user.id}`)
         setConnect(res.data)
      
       }catch(error){
@@ -33,7 +33,7 @@ const MNotificationPage = () => {
 
    useEffect(() => {
     const fetchBookings = async () => {
-      const res = await axios.get(`http://localhost:5000/api/mentor/pendingbookings/${mentorId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/pendingbookings/${mentorId}`);
       setBookings(res.data.filter(b => b.status === "pending")); 
       console.log(res.data);// only pending
     };
@@ -43,7 +43,7 @@ const MNotificationPage = () => {
    const handleDecision = async (bookingId, status, classroomLink) => {
     console.log(bookingId,status,classroomLink);
     try {
-      const res = await axios.put(`http://localhost:5000/api/users/showbooking/${bookingId}`,{status,classroomLink});
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/showbooking/${bookingId}`,{status,classroomLink});
       alert(`Booking ${status}`);
       // update local state
       // setBookings(prev => prev.filter(b => b._id !== bookingId));
@@ -55,12 +55,12 @@ const all=[];
 
 
   const handleAccept=async(id)=>{
-    await axios.put(`http://localhost:5000/api/users/connectionaccept/${user.id}/${id}`,{status:"accept"});
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/users/connectionaccept/${user.id}/${id}`,{status:"accept"});
     alert('request accepted successfully');
   }
 
   const handleReject=async(id)=>{
-     await axios.put(`http://localhost:5000/api/users/connectionreject/${user.id}/${id}`,{status:"reject"});
+     await axios.put(`${import.meta.env.VITE_API_URL}/api/users/connectionreject/${user.id}/${id}`,{status:"reject"});
     alert('request rejected');
   }
 

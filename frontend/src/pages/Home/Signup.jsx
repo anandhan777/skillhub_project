@@ -27,7 +27,7 @@ function Signup() {
     setFormData({name:"",email:"",password:"",role:"user"});
     navigate("/login");
     try{
-      const res=await axios.post("http://localhost:5000/api/users/register",formData);
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`,formData);
       const token=res.data.token
       setUserdata(res.data.user);
     
@@ -57,8 +57,7 @@ function Signup() {
    const handleGoogleLogin = () => {
     // Redirect user to backend Google auth route
      localStorage.setItem("user",JSON.stringify(userdata));
-    window.location.href = "http://localhost:5000/api/auth/google";
-  };
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`};
 
   return (
     <div className="body h-screen relative">

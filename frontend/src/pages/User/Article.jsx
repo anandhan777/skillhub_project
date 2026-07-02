@@ -11,7 +11,7 @@ const ArticleResources = () => {
   useEffect(()=>{
     const fetchArticle=async()=>{
     try{
-      const res=await axios.get("http://localhost:5000/api/users/articles");
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/articles`);
       setArticles(res.data);
     }catch(error){
       console.log(error)
@@ -23,29 +23,6 @@ const ArticleResources = () => {
     setArticles(prev=>prev.filter(m=>m.title===search));
   }
   const [activenav,setActivenav]=useState("article")
-  // const articles = [
-  //   {
-  //     title: "Understanding Startup Ecosystems",
-  //     author: "Mentor John",
-  //     date: "May 15, 2026",
-  //     excerpt: "A deep dive into how startups grow, scale, and sustain themselves in competitive markets...",
-  //     link: "#"
-  //   },
-  //   {
-  //     title: "UI/UX Best Practices",
-  //     author: "Admin Emily",
-  //     date: "May 12, 2026",
-  //     excerpt: "Design principles that make user interfaces intuitive, accessible, and visually appealing...",
-  //     link: "#"
-  //   },
-  //   {
-  //     title: "Roadmap for Career Growth",
-  //     author: "Mentor Alex",
-  //     date: "May 10, 2026",
-  //     excerpt: "Step-by-step guidance for students and professionals to build a strong career trajectory...",
-  //     link: "#"
-  //   }
-  // ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f4f7fb] to-[#e9eef5] p-26">

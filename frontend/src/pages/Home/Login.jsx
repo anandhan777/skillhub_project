@@ -22,21 +22,12 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  // useEffect(()=>{
-  //   gsap.to(borderRef.current,{
-  //     rotate:360,
-  //     duration:2,
-  //     ease:"linear",
-  //     repeat:-1
-
-  //   })
-  // })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
     console.log("Signup Data:", formData);
-    const res=await axios.post("http://localhost:5000/api/auth/login",formData) 
+    const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,formData) 
     console.log("login data:",res.data.role);
     console.log(res.data.role);
     
@@ -59,11 +50,6 @@ function Login() {
       console.error("Login failed:",error.response?.data||error.message);
     }
   };
-  //  const handleGoogleLogin = () => {
-  //   // Redirect user to backend Google auth route
-  //   localStorage.setItem("user",JSON.stringify(userdata));
-  //   window.location.href = "http://localhost:5000/api/auth/google";
-  // };
 
   return (
     <div className="body h-screen">

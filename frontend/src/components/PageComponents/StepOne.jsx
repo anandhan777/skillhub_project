@@ -14,7 +14,7 @@ const StepOne = ({nextStep,formdata,setFormdata}) => {
   useEffect(()=>{
     const fetchCategory=async()=>{
       try{
-      const res=await axios.get("http://localhost:5000/api/admin/getcategory");
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategory`);
       setCategory1(res.data);
       }catch(error){
         console.log(error);

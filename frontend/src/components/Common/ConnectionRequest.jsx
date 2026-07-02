@@ -8,7 +8,8 @@ const user=JSON.parse(localStorage.getItem("user"));
     const fetchRequests = async () => {
         const user=JSON.parse(localStorage.getItem("user"));
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/connectionrequest/${user.id}`);
+        const res = await axios.get(`
+${import.meta.env.VITE_API_URL}/api/users/connectionrequest/${user.id}`);
         setRequests(res.data);
         console.log(res.data)
       } catch (err) {
@@ -20,7 +21,7 @@ const user=JSON.parse(localStorage.getItem("user"));
 
   const handleDecision = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/users/connectionaccept/${id}`,{ status });
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/users/connectionaccept/${id}`,{ status });
       setRequests(prev => prev.filter(r => r._id !== id)); // remove from list after decision
     } catch (err) {
       console.error("Error updating connection:", err);

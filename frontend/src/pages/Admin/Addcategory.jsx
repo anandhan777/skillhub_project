@@ -12,7 +12,7 @@ const Addcategory = () => {
   useEffect(()=>{
     const fetchCategory=async()=>{
       try{
-      const res=await axios.get("http://localhost:5000/api/admin/getcategory");
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategory`);
       setCategorydata(res.data);
       }catch(error){
         console.log(error);
@@ -39,7 +39,7 @@ const Addcategory = () => {
 
 const deleteCategory=async(id)=>{
   try{
-    const data=await axios.delete(`http://localhost:5000/api/admin/deletecategory/${id}`);
+    const data=await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/deletecategory/${id}`);
      setCategorydata(pre=>pre.map(m=>m._id!==id));
   }catch(error){
     console.log(error);
@@ -52,14 +52,14 @@ const deleteCategory=async(id)=>{
         try{
           console.log(editId);
         if(isedit){
-          const res=await axios.put(`http://localhost:5000/api/admin/updatecategory/${editId}`,category);
+          const res=await axios.put(`${import.meta.env.VITE_API_URL}/api/admin/updatecategory/${editId}`,category);
           setCategorydata((pre)=>pre.map((cat)=>cat._id===editId?{...cat,...category}:cat));
           setIsedit(false);
           setEditId(null);
         }
             
 
-        const res=await axios.post("http://localhost:5000/api/admin/addcategory",category);
+        const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/addcategory`,category);
         
     
         }catch(err){

@@ -36,7 +36,7 @@ function Userprofileupdate() {
           try{
             const token=localStorage.getItem("token");
             console.log(token);
-            const res=await axios.get("http://localhost:5000/api/users/profileview",{headers:{Authorization: `Bearer ${token}`}},);
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profileview`,{headers:{Authorization: `Bearer ${token}`}},);
             setProfileId(res.data.profile._id);
             console.log(res.data);
           }catch(error){
@@ -71,15 +71,7 @@ function Userprofileupdate() {
       }
     };
     
-    // const notification=async()=>{
-    //   const token=localStorage.getItem("token");
-    //   try{
-    //     const res=axios.post("http://localhost:5000/api/users/profilenotification",{headers:{Authorization:`Bearer ${token}`}});
-    //     console.log(res);
-    //   }catch(error){
-    //     console.log(error);
-    //   }
-    // }
+
     const handleSubmit = async(e) => {
       e.preventDefault();
       const formdata=new FormData();
@@ -101,7 +93,7 @@ function Userprofileupdate() {
         const token = localStorage.getItem("token");
        
         const res = await axios.put(
-          `http://localhost:5000/api/users/profileupdate/${profileId}`,
+          `${import.meta.env.VITE_API_URL}/api/users/profileupdate/${profileId}`,
           formdata,
           {
             headers: {"Content-Type":"multipart/form-data","Authorization": `Bearer ${token}` }

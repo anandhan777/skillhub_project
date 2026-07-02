@@ -43,7 +43,8 @@ function Mentor_resource() {
     }
     const user=JSON.parse(localStorage.getItem("user"));
     try {
-      const res = await axios.post(`http://localhost:5000/api/mentor/addresource_request/${user.id}`,formdata, {
+      const res = await axios.post(`
+${import.meta.env.VITE_API_URL}/api/mentor/addresource_request/${user.id}`,formdata, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       alert("you request is sent to amin for verify the resource wait for their response!");

@@ -27,7 +27,7 @@ function Roadmap() {
     useEffect(()=>{
         const fetchroadmap=async()=>{
             try{
-            const res=await axios.get("http://localhost:5000/api/user/getroadmap");
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/user/getroadmap`);
             setRoadmap(res.data);
             }catch(err){
                 console.log(err.message);

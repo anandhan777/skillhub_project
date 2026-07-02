@@ -8,7 +8,7 @@ const PendingBookings = () => {
 
   useEffect(() => {
     const fetchBookings = async () => {
-      const res = await axios.get(`http://localhost:5000/api/mentor/pendingbookings/${mentorId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/pendingbookings/${mentorId}`);
       setBookings(res.data.filter(b => b.status === "pending")); // only pending
     };
     fetchBookings();
@@ -16,7 +16,7 @@ const PendingBookings = () => {
 
   const handleDecision = async (bookingId, status, classroomLink) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/api/users/showbookings/${bookingId}`, {
+      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/users/showbookings/${bookingId}`, {
         status,
         classroomLink
       });

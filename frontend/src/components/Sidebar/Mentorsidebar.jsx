@@ -17,7 +17,8 @@ export default function Mentorsidebar({users}) {
  
   const[expanded, setExpanded] = useState(true);
   const menuItems=[
-     {icon:user.isProfile?(<div className=" -ml-2 rounded-full w-12 h-12 border-1 border-white" ><img src={`http://localhost:5000${users.profile.profilePicture}`} className=" w-12 h-12 rounded-full object-cover"/></div>):
+     {icon:user.isProfile?(<div className=" -ml-2 rounded-full w-12 h-12 border-1 border-white" ><img src={`
+${import.meta.env.VITE_API_URL}${users.profile.profilePicture}`} className=" w-12 h-12 rounded-full object-cover"/></div>):
       (<div className="-ml-2 rounded-full w-12 h-12 border-1 border-white"><img src={profile} className="rounded-full" /></div>),label:user.isProfile?(<div className="text-white text-xl">{users.profile.fullName}</div>):"Profile",link:"/mentor/profileme"},
     {icon:<MdPerson/>,label:"Dashboard",link:"/mentor/dashboard"},
     {icon:<FaComments/>,label:"chat",link:`/mentor/chatpage`},

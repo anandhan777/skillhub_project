@@ -34,8 +34,8 @@ const Mentornotification = () => {
    useEffect(()=>{
         const getMentors=async()=>{
             try{
-            const [men,res]=await Promise.all([axios.get("http://localhost:5000/api/admin/admin/pending-mentors"),
-              axios.get("http://localhost:5000/api/admin/pendingresource")
+            const [men,res]=await Promise.all([axios.get(`${import.meta.env.VITE_API_URL}/api/admin/admin/pending-mentors`),
+              axios.get(`${import.meta.env.VITE_API_URL}/api/admin/pendingresource`)
             ]) ;
             setMentors(men.data);
             setResource(res.data);
@@ -49,25 +49,25 @@ const Mentornotification = () => {
     },[]);
    const token=localStorage.getItem("token");
     const handleAccept=async(id)=>{
-      await axios.put(`http://localhost:5000/api/admin/approvedresource/${id}`);
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/admin/approvedresource/${id}`);
       setResource(prev=>prev.filter(m=>m._id!==id));
       alert("mentor resource approved");
     }
     const handleReject=async(id)=>{
-      await axios.put(`http://localhost:5000/api/admin/rejectresource/${id}`);
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/admin/rejectresource/${id}`);
        setResource(prev=>prev.filter(m=>m._id!==id));
       alert("mentor resource rejected");
 
     }
 
     const approve=async(id,name)=>{
-      await axios.post(`http://localhost:5000/api/admin/admin/aprove/${id}`);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/admin/aprove/${id}`);
       setMentors(mentors.filter((m)=>m._id !==id));
       alert(`${name} request has been approved`);
     }
 
     const reject=async(id,name)=>{
-      await axios.post(`http://localhost:5000/api/admin/admin/reject/${id}`);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/admin/reject/${id}`);
       setMentors(mentors.filter((m)=>m._id !==id));
       alert(`${name} request has been rejected`);
     }

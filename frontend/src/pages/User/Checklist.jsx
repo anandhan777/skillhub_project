@@ -13,7 +13,7 @@ function Checklist() {
     useEffect(()=>{
         const fetchChecklist=async()=>{
         try{
-            const res=await axios.get("http://localhost:5000/api/users/checklists");
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/checklists`);
             setChecklists(res.data);
             console.log(res.data);
         }catch(error){

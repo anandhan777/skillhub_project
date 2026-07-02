@@ -13,7 +13,7 @@ function Businessidea() {
      useEffect(()=>{
         const fetchroadmap=async()=>{
             try{
-            const res=await axios.get("http://localhost:5000/api/admin/getroadmaps",{
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getroadmaps`,{
                 headers:{Authorization: `Bearer ${token}`}
             });
            ;
@@ -30,7 +30,7 @@ function Businessidea() {
             if (!roadmap?._id) return; 
             console.log(roadmap._id);
             try{
-                const res=await axios.get(`http://localhost:5000/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
                 setProgress(res.data.percentage);
                 console.log(res.data.percentage)
                 setCompletedSteps(res.data.completedSteps);
@@ -46,7 +46,7 @@ function Businessidea() {
         const fetchidea=async()=>{
               try{
             
-                const res=await axios.get("http://localhost:5000/api/users/viewbusiness");
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/viewbusiness`);
                 console.log(res.data);
                 setBusinessIdea(res.data);
                }catch(err){
@@ -58,7 +58,7 @@ function Businessidea() {
     },[])
     const user=JSON.parse(localStorage.getItem("user"))
     const savedIdea=async(id)=>{
-        await axios.post(`http://localhost:5000/api/users/addsavedidea/${user.id}/${id}`);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/users/addsavedidea/${user.id}/${id}`);
         alert("business idea saved successfully");
        
     }
@@ -70,7 +70,7 @@ function Businessidea() {
     const selectIdea=async(category)=>{
         try{
             if(progress===100){
-            const res=await axios.put(`http://localhost:5000/api/users/selectnewidea/${user.id}`,{category:category});
+            const res=await axios.put(`${import.meta.env.VITE_API_URL}/api/users/selectnewidea/${user.id}`,{category:category});
             alert('you really want to start a new roadmap')
             console.log(res);
             }else{
@@ -98,7 +98,7 @@ function Businessidea() {
                 
                
                
-            <img src={`http://localhost:5000${idea.imageUrl}`}  className=" h-[200px] w-full rounded-t-2xl object-cover"/>
+            <img src={`${import.meta.env.VITE_API_URL}${idea.imageUrl}`}  className=" h-[200px] w-full rounded-t-2xl object-cover"/>
             <BsBookmarkFill onClick={()=>savedIdea(idea._id)} className='text-2xl relative ml-[300px] mt-4 opacity-0 group-hover:opacity-100 trasition-opacity duration-300'/></div>
             <div className="px-7">
             <h1 className="text-2xl bold font-semibold">{idea.title}</h1>

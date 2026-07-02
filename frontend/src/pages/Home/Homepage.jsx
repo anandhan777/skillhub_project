@@ -13,7 +13,9 @@ import FAQSection from './FAQ'
 
 
 const Homepage = () => {
+  console.log(import.meta.env.VITE_API_URL);
   return (
+  
     <div><Header/>
     <About/>
     <Category/>

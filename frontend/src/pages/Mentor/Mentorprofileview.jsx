@@ -36,7 +36,7 @@ function Mentorprofileview() {
       try{
       const token=localStorage.getItem("token");
        console.log(token);
-      const res=await axios.get("http://localhost:5000/api/mentor/mentorprofile",{
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/mentorprofile`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);
@@ -68,11 +68,11 @@ function Mentorprofileview() {
   return (
     <div className="">
         <div className='w-full h-54 pt-15 '>
-            <img src={`http://localhost:5000${profile.profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profile.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
         </div>
         <div className="flex">
        <div className=' ml-41 w-60 h-60  rounded-full -mt-25  border-4 border-white '>
-            <img src={`http://localhost:5000${profile.profile.profilePicture}`} alt="profile" className=' w-full h-full object-cover rounded-full shadow-md'/>
+            <img src={`${import.meta.env.VITE_API_URL}${profile.profile.profilePicture}`} alt="profile" className=' w-full h-full object-cover rounded-full shadow-md'/>
         </div>
         <div className='flex'>
         <div className="pl-12" >

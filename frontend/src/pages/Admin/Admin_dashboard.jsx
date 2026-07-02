@@ -17,10 +17,10 @@ const AdminDashboard = () => {
   
       const fetchData=async()=>{
           try{
-        const usersRes=await axios.get("http://localhost:5000/api/admin/total-users");
-        const pendingMentorsRes=await axios.get("http://localhost:5000/api/admin/total-pending-mentors");
-        const roadmapsRes=await axios.get("http://localhost:5000/api/admin/total-roadmaps");
-        const businessIdeasRes=await axios.get("http://localhost:5000/api/admin/total-business-ideas");
+        const usersRes=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/total-users`);
+        const pendingMentorsRes=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/total-pending-mentors`);
+        const roadmapsRes=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/total-roadmaps`);
+        const businessIdeasRes=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/total-business-ideas`);
       
         setTotalUsers(usersRes.data.totalUsers);
         setTotalPendingMentors(pendingMentorsRes.data.totalPendingMentors);

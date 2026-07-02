@@ -36,7 +36,7 @@ const StepDetails = () => {
     const handleClick=async()=>{
       const token=localStorage.getItem("token");
       try{
-      const res=await axios.post("http://localhost:5000/api/users/complete-step",{roadmapId:steps.roadmapId,stepId:steps.steps._id},{headers:{Authorization:`Bearer ${token}`}});
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/complete-step`,{roadmapId:steps.roadmapId,stepId:steps.steps._id},{headers:{Authorization:`Bearer ${token}`}});
       console.log(res.data);
       }catch(error){
         console.log(error);
@@ -91,13 +91,5 @@ const StepDetails = () => {
     </div>
   );
 };
-
-
-//   return (
-//     <div className="p-8 bg-gray-100 min-h-screen">
-//       <StepDetails step={ideaValidationStep} />
-//     </div>
-//   );
-// };
 
 export default StepDetails;

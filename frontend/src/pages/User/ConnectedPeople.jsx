@@ -12,7 +12,7 @@ const ConnectedPeople = () => {
     const fetchConnections = async () => {
       const user=JSON.parse(localStorage.getItem("user"));
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/connectedpeople/${user.id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/connectedpeople/${user.id}`);
         setConnections(res.data);
         console.log(res.data);
       } catch (err) {
@@ -24,7 +24,7 @@ const ConnectedPeople = () => {
 
   const searchClick=async()=>{
     try{
-      const res=await axios.get(`http://localhost:5000/api/users/searchconnection?search=${search}`);
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/searchconnection?search=${search}`);
       setConnections(res.data);
     }catch(error){
       console.log(error);
@@ -78,7 +78,7 @@ const ConnectedPeople = () => {
         <div className="flex items-center gap-5">
           <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
             <User size={28} className="text-blue-600" />
-            <img src={`http://localhost:5000${conn.profilePicture}`} alt="profile" className='w-14 h-14 rounded-full object-cover'/>
+            <img src={`${import.meta.env.VITE_API_URL}${conn.profilePicture}`} alt="profile" className='w-14 h-14 rounded-full object-cover'/>
           </div>
 
           <div>

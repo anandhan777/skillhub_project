@@ -17,7 +17,7 @@ const Chatpage=({userId,picture,name})=>{
         console.log(userId);
         const fetchMsg=async()=>{
             try{
-            const res=await axios.get(`http://localhost:5000/api/chat/${user.id}/${userId}`,{headers:{Authorization:`Bearer ${token}`}});
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/chat/${user.id}/${userId}`,{headers:{Authorization:`Bearer ${token}`}});
             setMessages(res.data);
             console.log(res.data);
      
@@ -54,7 +54,7 @@ const Chatpage=({userId,picture,name})=>{
     const deleteMsg= async(id)=>{
        
         try{
-        await axios.delete(`http://localhost:5000/api/chat/msgdelete/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/chat/msgdelete/${id}`);
 
         const updateMessage= messages.filter((m)=>m._id!==id);
         setMessages(updateMessage);
@@ -73,16 +73,14 @@ const Chatpage=({userId,picture,name})=>{
             receiverId:userId,
             text,
         });
-            // senderId:user.id,
-            // receiverId:"6a0010ec97dc4d54ea49ac89",
-            // text:"hello from socket "
-        // setMessages((prev)=>[...prev,messageData]);
+     
         setText("");
     };
     return (
     <div><div className="grid grid-cols-2">
     <div className="mt-6 mx-6 h-[615px] flex flex-col w-[730px]">
-        <div className="flex items-center gap-5 "><img src={`http://localhost:5000${picture}`} className="h-12 w-12 rounded-full"/>
+        <div className="flex items-center gap-5 "><img src={`
+${import.meta.env.VITE_API_URL}${picture}`} className="h-12 w-12 rounded-full"/>
   <h1>chat with user {name}</h1></div>
   <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
     {messages.map((msg, index) => (
@@ -134,7 +132,8 @@ const Chatpage=({userId,picture,name})=>{
     <div className="h-28 bg-gradient-to-r from-[#1e97f3] to-[#0083ff] relative">
       <div className="absolute left-1/2 transform -translate-x-1/2 top-12">
         <img
-          src={`http://localhost:5000${picture}`}
+          src={`
+${import.meta.env.VITE_API_URL}${picture}`}
           alt="Profile"
           className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg"
         />

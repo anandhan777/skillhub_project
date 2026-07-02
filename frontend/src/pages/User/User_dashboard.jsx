@@ -19,7 +19,7 @@ const [profile,setProfile]=useState({user:{},profile:{}});
     const fetchProfile=async()=>{
       try{
       const token=localStorage.getItem("token");
-      const res=await axios.get("http://localhost:5000/api/users/profileview",{
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profileview`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);
@@ -36,7 +36,7 @@ const [profile,setProfile]=useState({user:{},profile:{}});
    useEffect(()=>{
         const fetchroadmap=async()=>{
             try{
-            const res=await axios.get("http://localhost:5000/api/admin/getroadmaps",{
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getroadmaps`,{
                 headers:{Authorization: `Bearer ${token}`}
             });
            ;
@@ -53,7 +53,7 @@ const [profile,setProfile]=useState({user:{},profile:{}});
             if (!roadmap?._id) return; 
             console.log(roadmap._id);
             try{
-                const res=await axios.get(`http://localhost:5000/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
                 setProgress(res.data.percentage);
                 console.log(res.data.percentage)
                 setCompletedSteps(res.data.completedSteps);
@@ -71,7 +71,7 @@ const [profile,setProfile]=useState({user:{},profile:{}});
     const fetchConnections = async () => {
       const user1=JSON.parse(localStorage.getItem("user"));
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/connectedpeople/${user1.id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/connectedpeople/${user1.id}`);
         setConnections(res.data);
       } catch (err) {
         console.error("Error fetching connections:", err);
@@ -83,7 +83,7 @@ const [profile,setProfile]=useState({user:{},profile:{}});
   useEffect(()=>{
     const fetchSaveditems=async()=>{
       try{
-        const res=await axios.get(`http://localhost:5000/api/users/saveditems/${user1.id}`);
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/saveditems/${user1.id}`);
         setSaved(res.data);
         console.log(res.data)
       }catch(error){
@@ -119,11 +119,11 @@ const [profile,setProfile]=useState({user:{},profile:{}});
     <div className="col-span-9 space-y-4">
 
       {/* HERO CARD */}
-      <div style={{backgroundImage:`url(http://localhost:5000${profile.profile.profileBanner})`,backgroundPosition:"center",backgroundSize:"cover"}} className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-3xl p-4 flex justify-between items-center shadow-sm">
+      <div style={{backgroundImage:`url(${import.meta.env.VITE_API_URL}${profile.profile.profileBanner})`,backgroundPosition:"center",backgroundSize:"cover"}} className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-3xl p-4 flex justify-between items-center shadow-sm">
 
         <div className="flex items-center gap-5">
           <img
-            src={`http://localhost:5000${profile.profile.profilePicture}`}
+            src={`${import.meta.env.VITE_API_URL}${profile.profile.profilePicture}`}
             className="w-20 h-20 rounded-full object-cover border-4 border-white"
           />
 

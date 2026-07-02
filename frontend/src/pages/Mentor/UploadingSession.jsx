@@ -16,7 +16,7 @@ const onSubmit=async(data)=>{
   formdata.append("startingTime",data.startingTime);
   formdata.append("endingTime",data.endingTime);
     try {
-       const res=axios.post(`http://localhost:5000/api/mentor/uploadingsession/${user.id}`,formdata,
+       const res=axios.post(`${import.meta.env.VITE_API_URL}/api/mentor/uploadingsession/${user.id}`,formdata,
          {
         headers: {
           "Content-Type": "multipart/form-data", // ensure JSON header

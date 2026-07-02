@@ -3,34 +3,6 @@ import { CalendarDays, Clock3, Video, User } from "lucide-react";
 import{useState,useEffect} from "react";
 import axios from "axios" ;
 
-// const sessions = [
-//   {
-//     id: 1,
-//     title: "Building a Successful Startup",
-//     mentor: "John Mathew",
-//     date: "25 June 2026",
-//     time: "06:00 PM - 07:30 PM",
-//     description:
-//       "Learn how to validate startup ideas, find your first customers, and build a sustainable business.",
-//     image:
-//       "https://images.unsplash.com/photo-1552664730-d307ca884978",
-//   },
-//   {
-//     id: 2,
-//     title: "React Roadmap for Entrepreneurs",
-//     mentor: "Sarah Wilson",
-//     date: "28 June 2026",
-//     time: "07:00 PM - 08:00 PM",
-//     description:
-//       "Complete roadmap to become a React developer and launch your startup products.",
-//     image:
-//       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-//   },
-// ];
-
-
- 
-
 function UpcomingSessions() {
   const[sessions,setSessions]=useState([]);
   const[status,setStatus]=useState([]);
@@ -40,8 +12,8 @@ function UpcomingSessions() {
    useEffect(()=>{
     const fetchSession=async()=>{
       try {
-        const res=await axios.get("http://localhost:5000/api/users/viewuploadedsession");    
-        const res1=await axios.get(`http://localhost:5000/api/users/viewsessionregister/${user.id}`);  
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/viewuploadedsession`);    
+        const res1=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/viewsessionregister/${user.id}`);  
         setSessions(res.data);   
         setRegister(res1.data);
         console.log(res.data);
@@ -54,8 +26,8 @@ function UpcomingSessions() {
   },[])
   const sessionRegister=async(id)=>{
     try{
-  const res=await axios.post(`http://localhost:5000/api/users/sessionregister/${user.id}/${id}`)
-  const updated=await axios.get(`http://localhost:5000/api/users/viewsessionregister/${user.id}`);  
+  const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/sessionregister/${user.id}/${id}`)
+  const updated=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/viewsessionregister/${user.id}`);  
   setRegister(updated.data);
     }catch(error){
       console.log(error);
@@ -93,7 +65,8 @@ function UpcomingSessions() {
             {/* Banner */}
             <div className="relative ">
               <img
-                src={`http://localhost:5000${session.banner}`}
+                src={`
+${import.meta.env.VITE_API_URL}${session.banner}`}
                 alt=""
                 className="h-56 w-full object-cover"
               />

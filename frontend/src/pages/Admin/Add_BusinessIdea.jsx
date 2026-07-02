@@ -30,7 +30,7 @@ const [formData, setFormData] = useState({initialState});
   useEffect(()=>{
     const fetchCategory=async()=>{
       try{
-      const res=await axios.get("http://localhost:5000/api/admin/getcategory");
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategory`);
       setCategory1(res.data);
       }catch(error){
         console.log(error);
@@ -57,7 +57,7 @@ const [formData, setFormData] = useState({initialState});
 
     try{
      
-    const res= await axios.post("http://localhost:5000/api/admin/createIdea",formdata,{headers:
+    const res= await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/createIdea`,formdata,{headers:
       {"Content-Type":"multipart/form-data"}
      
     });

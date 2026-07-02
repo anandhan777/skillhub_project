@@ -9,7 +9,7 @@ const MentorProfileForm = ({title,preview1,preview2,handleChange,handleSubmit,fo
     useEffect(()=>{
         const fetchCategory=async()=>{
           try{
-          const res=await axios.get("http://localhost:5000/api/admin/getcategory");
+          const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategory`);
           setCategory(res.data);
           }catch(error){
             console.log(error);
@@ -162,21 +162,7 @@ const MentorProfileForm = ({title,preview1,preview2,handleChange,handleSubmit,fo
           required
         />
       </div>
-
-      {/* Resources */}
-      {/* <div>
-        <label className="block text-sm font-medium text-gray-600">Resources (links, comma separated)</label>
-        <input
-          type="text"
-          name="resources"
-          value={formData.resources}
-          onChange={handleChange}
-          className="w-full border rounded-md p-2 mt-1"
-        />
-      </div> */}
-
-      {/* Submit */}
-      <button
+      <button 
         type="submit"
         className="w-[200px] bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 mt-5"
       >

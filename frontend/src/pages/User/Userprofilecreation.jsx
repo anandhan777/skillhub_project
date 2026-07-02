@@ -104,7 +104,7 @@ function Userprofilecreation() {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "http://localhost:5000/api/users/profilecreate",
+        `${import.meta.env.VITE_API_URL}/api/users/profilecreate`,
         formdata,
         {
           headers: {"Content-Type":"multipart/form-data","Authorization": `Bearer ${token}` }

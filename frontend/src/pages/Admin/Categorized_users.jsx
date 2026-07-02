@@ -18,7 +18,7 @@ const CategoryUserTable = () => {
         const getUsers=async()=>{
             console.log(cid);
         try{
-        const res=await axios.get(`http://localhost:5000/api/admin/getcategorizedusers/${cid.id}`);
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getcategorizedusers/${cid.id}`);
         setUsers(res.data);
 
         
@@ -29,7 +29,7 @@ const CategoryUserTable = () => {
         getUsers();
         },[]);
     const userDelete=async(id,name)=>{
-        await axios.delete(`http://localhost:5000/api/admin/admin/delete_user/${id}`)
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/admin/delete_user/${id}`)
         alert(`do you really want to delete ${name}`);
         setUsers(users.filter((m)=>m._id!==id));
       
@@ -42,7 +42,7 @@ const CategoryUserTable = () => {
     const searchUser=async()=>{
       try {
         if(search.trim()!==""){
-        const data=await axios.get(`http://localhost:5000/api/admin/searchusers?search=${search}`)
+        const data=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/searchusers?search=${search}`)
         setUsers(data.data);
         console.log(data.data);
         console.log(typeof data.data);
@@ -76,7 +76,8 @@ const CategoryUserTable = () => {
                 <tbody>
                   {users.map((u) => (
                     <tr key={u._id} className="border-b hover:bg-gray-100 transition">
-                      <td className="py-3 px-6 font-semibold text-gray-700"><img src={`http://localhost:5000${u.profilePicture}`} className="h-15 w-15 rounded-full object-cover"/></td>
+                      <td className="py-3 px-6 font-semibold text-gray-700"><img src={`
+${import.meta.env.VITE_API_URL}${u.profilePicture}`} className="h-15 w-15 rounded-full object-cover"/></td>
                       <td className="py-3 px-6 font-semibold text-gray-700">{u.user.name}</td>
                       <td className="py-3 px-6 text-gray-600 text-center">{u.user.email}</td>
                       <td className="py-3 px-6 text-gray-600 text-center">{u.user.role}</td>

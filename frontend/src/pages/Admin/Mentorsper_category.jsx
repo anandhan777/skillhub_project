@@ -18,7 +18,7 @@ const MentorDistributionChart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:5000/api/mentor/mentors-per-category");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/mentors-per-category`);
       const data = res.data;
 
       setChartData({

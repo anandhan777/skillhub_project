@@ -17,7 +17,8 @@ const MChatLayout = () => {
     const fetchUsers = async () => {
       try {
         
-        const res=await axios.get(`http://localhost:5000/api/mentor/connectedfriends/${user.id}`);
+        const res=await axios.get(`
+${import.meta.env.VITE_API_URL}/api/mentor/connectedfriends/${user.id}`);
         
         setUsers(res.data);
         console.log(res.data);
@@ -84,7 +85,8 @@ const MChatLayout = () => {
             >
               <div className="relative">
                 <img
-                  src={`http://localhost:5000${profile.profilePicture}`}
+                  src={`
+${import.meta.env.VITE_API_URL}${profile.profilePicture}`}
                   alt="Profile"
                   className="w-12 h-12 rounded-full object-cover border-2 border-white"
                 />

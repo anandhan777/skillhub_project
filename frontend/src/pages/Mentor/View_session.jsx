@@ -13,17 +13,12 @@ function SessionCard() {
   const[registerUser,setRegisterUser]=useState([]);
 
   const[showmenu,setShowmenu]=useState("sessionregister");
-
-  // const toggleMenu=(menu)=>{
-  //   setShowmenu(showmenu===menu?null:menu);
-  // }
-
   useEffect(()=>{
     const user=JSON.parse(localStorage.getItem("user"));
     const fetchSession=async()=>{
       try {
-        const res=await axios.get(`http://localhost:5000/api/mentor/uploadedsession/${user.id}`);
-        const res1=await axios.get(`http://localhost:5000/api/mentor/viewuploadedsession/${user.id}`);
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/uploadedsession/${user.id}`);
+        const res1=await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/viewuploadedsession/${user.id}`);
         setSessions(res.data);
         setRegisterUser(res1.data);
         console.log(res.data);
@@ -38,7 +33,7 @@ function SessionCard() {
   },[])
   const deleteSession=async(id)=>{
     try {
-      await axios.delete(`http://localhost:5000/api/mentor/deletesession/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/mentor/deletesession/${id}`);
       
       setRegisterUser(prev=>prev.filter(m=>m._id!==id));
       alert("session deleted");
@@ -64,7 +59,8 @@ function SessionCard() {
             
             <div className="relative">
               <img
-                src={`http://localhost:5000${session.sessionId?.banner}`}
+                src={`
+${import.meta.env.VITE_API_URL}${session.sessionId?.banner}`}
                 alt=""
                 className="h-56 w-full object-cover"
               />
@@ -125,7 +121,8 @@ function SessionCard() {
 
       {/* Banner */}
       <img 
-        src={`http://localhost:5000${selectedSession.sessionId.banner}`} 
+        src={`
+${import.meta.env.VITE_API_URL}${selectedSession.sessionId.banner}`} 
         alt="" 
         className="w-full h-58 object-cover rounded-lg -mt-5"
       />
@@ -206,7 +203,8 @@ function SessionCard() {
             
             <div className="relative">
               <img
-                src={`http://localhost:5000${session?.banner}`}
+                src={`
+${import.meta.env.VITE_API_URL}${session?.banner}`}
                 alt=""
                 className="h-56 w-full object-cover"
               />

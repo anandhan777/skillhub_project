@@ -19,7 +19,7 @@ useEffect(() => {
     const fetchProfile=async()=>{
       try{
       const token=localStorage.getItem("token");
-      const res=await axios.get("http://localhost:5000/api/users/profileview",{
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profileview`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);

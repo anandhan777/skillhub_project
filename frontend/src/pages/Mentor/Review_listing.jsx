@@ -13,8 +13,8 @@ function Review_listing() {
 useEffect(()=>{
     const fetchReviews=async()=>{
         try{
-        const [res,cal]=await Promise.all([axios.get(`http://localhost:5000/api/mentor/listmentorreviews/${user.id}`),
-          axios.get(`http://localhost:5000/api/mentor/calculaterating/${user.id}`)
+        const [res,cal]=await Promise.all([axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/listmentorreviews/${user.id}`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/calculaterating/${user.id}`)
         ]);
         setReviews(res.data);
         setCalculate(cal.data);

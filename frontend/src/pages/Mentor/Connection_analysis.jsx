@@ -21,7 +21,8 @@ const MentorConnectionsChart = ({ mentorId }) => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/mentor/mentorconnectionanalysis/${user.id}`);
+        const res = await axios.get(`
+${import.meta.env.VITE_API_URL}/api/mentor/mentorconnectionanalysis/${user.id}`);
         setAnalytics(res.data);
       } catch (err) {
         console.error("Error fetching connections analytics:", err);

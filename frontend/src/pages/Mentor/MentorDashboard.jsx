@@ -18,10 +18,10 @@ const MentorDashboard = () => {
   useState(()=>{
     const fetchcollection=async()=>{
       try{
-      const [res,rat,glo,list]=await Promise.all([axios.get(`http://localhost:5000/api/mentor/collections/${user.id}`),
-        axios.get(`http://localhost:5000/api/mentor/calculaterating/${user.id}`),
-         axios.get("http://localhost:5000/api/admin/globalnotification"),
-         axios.get(`http://localhost:5000/api/mentor/latestreview/${user.id}`),
+      const [res,rat,glo,list]=await Promise.all([axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/collections/${user.id}`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/calculaterating/${user.id}`),
+         axios.get(`${import.meta.env.VITE_API_URL}/api/admin/globalnotification`),
+         axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/latestreview/${user.id}`),
       ]);
       setCollection(res.data);
       setrating(rat.data);
@@ -39,7 +39,8 @@ const MentorDashboard = () => {
 
   const deleteMsg=async(id)=>{
     try{
-      await axios.delete(`http://localhost:5000/api/users/deletemsg/${id}`)
+      await axios.delete(`
+${import.meta.env.VITE_API_URL}/api/users/deletemsg/${id}`)
       setGlobal(prev=>prev.filter(m=>m._id!==id))
     }catch(error){
       console.log(error);

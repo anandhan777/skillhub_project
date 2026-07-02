@@ -31,7 +31,7 @@ function Mentorprofileupdate() {
           try{
             const token=localStorage.getItem("token");
          
-            const res=await axios.get("http://localhost:5000/api/mentor/mentorprofile",{headers:{Authorization: `Bearer ${token}`}},);
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/mentor/mentorprofile`,{headers:{Authorization: `Bearer ${token}`}},);
             setFormData(res.data);
            setProfileId(res.data.profile._id);
           }catch(error){
@@ -93,7 +93,8 @@ function Mentorprofileupdate() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        `http://localhost:5000/api/mentor/mentorprofileupdate/${profileId}`,
+        `
+${import.meta.env.VITE_API_URL}/api/mentor/mentorprofileupdate/${profileId}`,
         formdata,
         {
           headers: {"Content-Type":"multipart/form-data","Authorization": `Bearer ${token}` }

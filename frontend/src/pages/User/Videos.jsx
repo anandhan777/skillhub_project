@@ -11,7 +11,7 @@ const VideoResources = () => {
   const[search,setSearch]=useState("");
   const user=JSON.parse(localStorage.getItem("user"))
     const savedResource=async(id)=>{
-        await axios.post(`http://localhost:5000/api/users/addsavedresource/${user.id}/${id}`);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/users/addsavedresource/${user.id}/${id}`);
         alert("resource saved successfully");
        
     }
@@ -19,7 +19,7 @@ const VideoResources = () => {
   useEffect(()=>{
     const fetchVideos=async()=>{
       try{
-        const res=await axios.get("http://localhost:5000/api/users/videos");
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/videos`);
         setVideos(res.data);
         console.log(res.data)
       }catch(error){
@@ -72,7 +72,7 @@ const VideoResources = () => {
           >
             {/* Thumbnail */}
             <img
-              src={`http://localhost:5000${video.thumbnail}`}
+              src={`${import.meta.env.VITE_API_URL}${video.thumbnail}`}
               alt={video.title}
               className="w-full h-48 object-cover"
             />

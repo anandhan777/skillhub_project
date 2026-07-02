@@ -35,7 +35,8 @@ function ViewMentorprofile() {
       try{
       const token=localStorage.getItem("token");
        console.log(token);
-      const res=await axios.get(`http://localhost:5000/api/mentor/viewmentorprofile/${id}`,{
+      const res=await axios.get(`
+${import.meta.env.VITE_API_URL}/api/mentor/viewmentorprofile/${id}`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);
@@ -54,7 +55,8 @@ function ViewMentorprofile() {
      fetchProfile();
      const fetchConection=async()=>{
       try{
-          const res1=await axios.get(`http://localhost:5000/api/users/getconnection/${id}`,{
+          const res1=await axios.get(`
+${import.meta.env.VITE_API_URL}/api/users/getconnection/${id}`,{
           headers: {
             Authorization: `Bearer ${token}`, // or however you store it
           }},);
@@ -80,7 +82,7 @@ function ViewMentorprofile() {
     const user=JSON.parse(localStorage.getItem("user"))
   
     try{
-      const res=await axios.post('http://localhost:5000/api/users/sendconnection',{senderId:user.id,receiverId:id});
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/sendconnection`,{senderId:user.id,receiverId:id});
       alert("connection request sent successfully");
     }catch(error){
       console.error(error);
@@ -92,20 +94,21 @@ function ViewMentorprofile() {
         <div className='w-full h-54 mt-10'>
           
 
-            <img src={`http://localhost:5000${profile?.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
+            <img src={`
+${import.meta.env.VITE_API_URL}${profile?.profileBanner}`} alt="banner" className='w-full h-full object-cover'/>
         </div>
         <div className="flex">
         <div className=' ml-41 w-60 h-60 relative rounded-full -mt-25  border-4 border-white '>
-            <img src={`http://localhost:5000${profile?.profilePicture}`} alt="profile" className='  w-60 h-60 object-cover rounded-full shadow-md'/>
+            <img src={`
+${import.meta.env.VITE_API_URL}${profile?.profilePicture}`} alt="profile" className='  w-60 h-60 object-cover rounded-full shadow-md'/>
         </div>
         <div className='flex'>
         <div className="pl-12" >
         <h1 className="text-4xl font-semibold">{profile?.fullName}</h1>
         <h1 className="text-2xl text-gray-500">{profile?.mentor?.name}</h1>
-        {/* <h3 className="text-2xl text-blue-800">{profile.user.email}</h3> */}
+      
         <h3 className='text-2xl text-gray-500 flex items-center'><MdLocationOn/>{profile?.bio}</h3>
-        {/* <h3 className='text-2xl text-gray-500 flex items-center'>{profile.profile.skills}</h3>
-        <h3 className='text-2xl text-gray-500 flex items-center'>{profile.profile.interests}</h3> */}
+      
         <div className="flex mt-4 gap-4">
             <button onClick={()=>handleClick(profile?.mentor?._id)} className=" border-2 border-blue-400 bg-transparent text-blue-800 px-4 py-2 rounded-full hover:text-white duration-500 hover:bg-blue-800">connect</button>
             </div>
@@ -117,13 +120,7 @@ function ViewMentorprofile() {
         </div>
         
         <div className="bg-gray-100 w-full  mt-5 pt-5">
-            {/* <div className=" ml-34  w-[300px] h-[230px] bg-white rounded-lg ">
-                <h2 className="text-green-900  font-light text-3xl pl-19 py-6 ">contact Me</h2>
-                <h2 className="text-1xl flex items-center pl-10"><SiGmail/> krishnan@gmail.com</h2>
-                <h2 className="text-1xl flex items-center pl-10"><FaPhone/> 123-456-7890</h2>
-                <h2 className="text-1xl flex items-center pl-10"><MdLocationOn/> kerala</h2>
-                <button className="bg-blue-400 text-white px-4 py-2 rounded-full ml-25 my-5">chat me</button>
-            </div> */}
+          
             <div className="w-full grid grid-cols-3 gap-10 px-20 pb-5 ">
     <div className="bg-white shadow rounded-lg p-4 transform-transform duration-300 hover:scale-108">
       <h3 className="text-lg font-bold mb-2">Contact Me</h3>

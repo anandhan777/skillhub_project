@@ -21,7 +21,7 @@ function Roadmap() {
     useEffect(()=>{
         const fetchroadmap=async()=>{
             try{
-            const res=await axios.get("http://localhost:5000/api/admin/getroadmaps",{
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/getroadmaps`,{
                 headers:{Authorization: `Bearer ${token}`}
             });
            ;
@@ -38,7 +38,7 @@ function Roadmap() {
             if (!roadmap?._id) return; 
             console.log(roadmap._id);
             try{
-                const res=await axios.get(`http://localhost:5000/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
+                const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/users/getprogress/${roadmap._id}`,{headers:{Authorization:`Bearer ${token}`}});
                 setProgress(res.data.percentage);
                 console.log(res.data.percentage);
                 setCompletedSteps(res.data.completedSteps);

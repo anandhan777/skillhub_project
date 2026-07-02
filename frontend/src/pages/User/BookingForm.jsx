@@ -22,7 +22,7 @@ const BookingForm = ({  }) => {
         try{
             const formdata={...data,mentorId:id,userId:user.id};
             console.log(formdata);
-        const res=await axios.post("http://localhost:5000/api/users/sessionbooking",formdata);
+        const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/sessionbooking`,formdata);
 
         setShowFeedback(true);
         }catch(error){

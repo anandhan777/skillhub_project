@@ -15,7 +15,7 @@ const ViewFeedbacks = () => {
   useEffect(()=>{
     const fetchFeedback=async()=>{
         try{
-            const res=await axios.get("http://localhost:5000/api/admin/viewfeedback");
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/viewfeedback`);
             setFeedbacks(res.data);
 
         }catch(error){
@@ -26,7 +26,7 @@ const ViewFeedbacks = () => {
   },[])
   const deleteFeedback=async(id)=>{
     try{
-        const res=await axios.delete(`http://localhost:5000/api/admin/deletefeedback/${id}`);
+        const res=await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/deletefeedback/${id}`);
         setFeedbacks(pre=>pre.map(m=>m._id!==id))
     }catch(error){
         console.log(error);

@@ -32,7 +32,7 @@ const MentorStarRating = ({mentorId,userId}) => {
   }
 
   const sendFeedback=async()=>{
-    await axios.post(`http://localhost:5000/api/mentor/addstarrating`,{mentorId:mentorId,userId:userId,rating:rating,review:review,feedback:feedback});
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/mentor/addstarrating`,{mentorId:mentorId,userId:userId,rating:rating,review:review,feedback:feedback});
     alert("thank you for your response");
   }
 
